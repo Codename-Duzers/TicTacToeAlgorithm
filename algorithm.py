@@ -1,9 +1,10 @@
 WinTrigger = 0
 Piece = 0
 
-Dict = {'A1': [0,0], 'B1': [0,1], 'C1': [0,2], 'A2': [1,0], 'B2': [1,1], 'C2': [1,2], 'A3': [2,0], 'B3': [2,1], 'C3': [2,2]}
 
-GameBoard = [['A1', 'B1', 'C1'],
+squareToCoord = {'A1': [0,0], 'B1': [0,1], 'C1': [0,2], 'A2': [1,0], 'B2': [1,1], 'C2': [1,2], 'A3': [2,0], 'B3': [2,1], 'C3': [2,2]}
+
+gameBoard = [['A1', 'B1', 'C1'],
              ['A2', 'B2', 'C2'],
              ['A3', 'B3', 'C3']]
 
@@ -28,17 +29,17 @@ def winChecker(board):
 while WinTrigger == 0:
     raw_move = input('What position would you like to play?')
     
-    if raw_move in Dict.items() == False:
+    if raw_move in squareToCoord.items() == False:
         print("This value is outside the scope of the board")
         continue     
     elif raw_move in PlayedMoves:
         print("Sorry, this move has alredy been played, please select another spot")
         continue
     else:
-        proc_move = Dict.get(raw_move)
-        GameBoard[proc_move[0]][proc_move[1]] = Piece
+        proc_move = squareToCoord.get(raw_move)
+        gameBoard[proc_move[0]][proc_move[1]] = Piece
         PlayedMoves.append(raw_move)
         Piece = Piece * -1 + 1
     
-    print(winChecker(GameBoard))
-    print(GameBoard)
+    print(winChecker(gameBoard))
+    print(gameBoard)
